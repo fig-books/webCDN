@@ -1,0 +1,191 @@
+<html>  
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Fig</title>
+    <meta name="description" content="Publishing Christian literature and educational resources since 2010.">
+    <meta name="keywords" content="Christian, Theology, Reformed, Publishing, Publishers, Books, Book, eBooks, eBook, Theological, Christianity, Reformation, Seminary, Learn, Learning, iBookstore, iBook, iBooks, Apple, Kindle, Amazon, Buy eBooks, Find eBooks, Design, Technology, Engineering">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	
+	<script src="scripts/jquery.js"></script>
+	<script type="text/javascript">
+
+		// On window load. This waits until images have loaded which is essential
+		$(window).load(function(){
+
+			// Fade in images so there isn't a color "pop" document load and then on window load
+			$(".sm-button img").fadeIn(500);
+
+			// clone image
+			$('.sm-button img').each(function(){
+				var el = $(this);
+				el.css({"position":"absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position":"absolute","z-index":"998","opacity":"0"}).insertBefore(el).queue(function(){
+					var el = $(this);
+					el.parent().css({"width":this.width,"height":this.height});
+					el.dequeue();
+				});
+				this.src = grayscale(this.src);
+			});
+
+			// Fade image 
+			$('.sm-button img').mouseover(function(){
+				$(this).parent().find('img:first').stop().animate({opacity:1}, 100);
+			})
+			$('.img_grayscale').mouseout(function(){
+				$(this).stop().animate({opacity:0}, 500);
+			});		
+		});
+
+		// Grayscale w canvas method
+		function grayscale(src){
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			var imgObj = new Image();
+			imgObj.src = src;
+			canvas.width = imgObj.width;
+			canvas.height = imgObj.height; 
+			ctx.drawImage(imgObj, 0, 0); 
+			var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+			for(var y = 0; y < imgPixels.height; y++){
+				for(var x = 0; x < imgPixels.width; x++){
+					var i = (y * 4) * imgPixels.width + x * 4;
+					var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+					imgPixels.data[i] = avg; 
+					imgPixels.data[i + 1] = avg; 
+					imgPixels.data[i + 2] = avg;
+				}
+			}
+			ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+			return canvas.toDataURL();
+	    }
+
+	</script>
+    <style type="text/css">
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0 auto;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font:100% helvetica;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;}
+body{}
+.break{display:block;margin:10px 0 0;}
+body{width:820px;background-color:#f9f9f9;}
+
+#container{}
+
+#header{margin:1.8em 0 0em;padding:2.7em 0;background-color:#2F2E30;border-bottom:#555 1px solid;-webkit-border-radius:7px 7px 0 0;border-radius:7px 7px 0px 0px;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
+#home {position:relative;top:0px;margin: 0 0.5em; text-decoration:none;color:#2f2e30;transition: all 0.25s ease-in-out;
+-webkit-transition: all 0.25s ease-in-out;
+-moz-transition: all 0.25s ease-in-out;}
+#home:hover {-moz-opacity:0.8;opacity:0.8;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
+#home:active {-moz-opacity:1;opacity:1;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);}
+#header .fig {margin:0 0 0 2.3em;}
+#header img {}
+#header a h1 {display:inline;margin: 0 0.2em 1em;font: bold 5.8em/1.2em 'Open Sans';color:#e9e9e9;}
+#header a.nav {position:relative;top:-20px;margin:0 0 0 35px;font:bold 20px helvetica;color:#ddd;text-decoration:none;}
+#header a.nav:hover {-moz-opacity:0.8;opacity:0.8;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
+#social-media {display:inline;float:right;position:relative;top:-2px;right:37px;}
+#social-media span {display:block;float:right;clear:none;margin:0 0 0 0.3em;}
+#social-media a{display:block;margin: 0 0;}
+#social-media a:hover{-moz-opacity:1;opacity:1;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);}
+#social-media a:active{-moz-opacity:0.9;opacity:0.9;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=90);}
+#social-media .google-plus,#social-media .twitter,#social-media .facebook {width:64px;height:64px;}
+
+#main{background:#2F2E30;-webkit-border-radius: 0 0 7px 7px;border-radius: 0 0 7px 7px;-moz-border-radius-bottomleft:7px;-moz-border-radius-bottomright:7px;}
+.list {padding:0 0;}
+.list li {}
+.bufferpadding, #footer {margin: 3% 0;padding: 0 1%;min-height:1px;}
+#footer {font: 10px helvetica; color: #888;}
+.searchbar {background: transparent; padding:3% 3%;border-bottom:#4A434A 1px solid;}
+input.search{display:block;padding:10px 17px;margin:0px auto;width:99%;border-bottom-left-radius:25px 25px;border-bottom-right-radius:25px 25px;border-top-left-radius:25px 25px;border-top-right-radius:25px 25px;-moz-border-radius: 25px;
+border-radius: 25px;color:#2F2E30;font-family:helvetica;font-size:20px;background:#e1e1e1 url('imgs/search.png') no-repeat 99% center;outline:none;transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;border-radius:25px;-webkit-border-radius:25px;-moz-border-radius:25px;border:1px solid #e8e8e8;}
+input.search:focus{border:none;box-shadow:0 0 5px #fff;-webkit-box-shadow:0 0 8px #fff;-moz-box-shadow:0 0 5px #fff;border:1px solid #fff;}
+
+#post-area .filter{background:#4A434A;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;-moz-border-radius: 4px;border-radius: 4px;color:#F4F5F4;float:right;font-size:20px;font-weight:bold;margin:10px 0;padding:7px 8px;}
+li.btn{background:transparent !important;}
+.note{text-shadow:#262729 0 -1px 0;margin-bottom:60px;text-align:center;color:#999;font-size:14px;}
+.note b{color:#eee;}
+
+#post-area{}
+#post-area .sort-by{margin-bottom:10px;width:100%;float:left;clear:both;}
+#post-area .thumb{float:left;margin:0 20px 20px 0;}
+#post-area .list{clear:both;padding:3.6% 3.6% 0em;}
+#post-area .list li{padding:24px 30px 29px;min-height:156px;border-bottom:#d3d3d3 1px solid;}
+#post-area li:first-child {border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;}
+#post-area li:last-child{border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;}
+#post-area li:nth-child(2n+1){background-color:#e1e1e1;}
+#post-area li:nth-child(2n+1) .thumb{}
+#post-area li:nth-child(2n+2){background-color:#e8e8e8;}
+#post-area li:nth-child(2n+2) .thumb{}
+#post-area li:last-child {margin: 0 0;}
+/*.price{width:100px;margin:2.9px 20px 5px 0;padding:6px 0;float:left;clear:left;position:relative;background:#353535;font:bold 16px helvetica;text-align:center;color:#f1f1f1;} */
+#post-area img{margin:0 20px 12px 0 !important;}
+.heading{margin:7px 0 1px;color:#2f2e30;font:bold 34px/38px 'open sans', helvetica;}
+.subheading {margin: 0 0 29px;font:23px/28px helvetica;color:#2f2e30;}
+.content{margin:0px 0 0;font:normal 17px/23px helvetica,arial;color:#2f2e30;text-align:justify;}
+.content a {color:#2f2e30;text-decoration:none;}
+.content a:hover {text-decoration:underline;}
+.huge{max-height:500px;overflow:scroll;}
+	</style>
+</head>
+
+
+<body>
+
+<div id="container">
+	<div id="header">
+		<a id="Home" href="http://fig-books.com" target="_parent"><img class="fig" width="53" src="imgs/500-w.png"></a>
+		<a id="Catalog" href="http://fig-books.com/catalog" target="_parent" href="" class="nav">Catalog</a>
+		<a id="About-Us" href="http://fig-books.com/about" target="_parent" class="nav">About Us</a>		
+		<div id="social-media">
+			<span><a class="sm-button" target="_blank" href="https://plus.google.com/b/115477808556456896921/"><img src="imgs/socialmedia-icons/google-plus.png" /></a></span>
+			<span><a class="sm-button" target="_blank" href="https://twitter.com/#!/Fig_Books"><img src="imgs/socialmedia-icons/twitter.png" /></a></span>
+			<span><a class="sm-button" target="_blank" href="https://www.facebook.com/pages/Fig/183302175100224"><img src="imgs/socialmedia-icons/facebook.png" /></a></span>
+		</div>
+	</div> <!-- end header -->
+		<div id="main">
+			<div id="post-area">
+				<ul class="list">
+					<li>						
+							<h1 class="heading">Theology. For All.</h1>
+						<h6 class="subheading">Publishing classic theological texts in contemporary digital formats.</h6>
+						<p class="content">
+						<span class="break"></span>
+							This company began when the founders saw the pressing need for <a href="http://itunes.apple.com/us/book/syntax-moods-tenses-in-new/id428956845?mt=11"><i>Syntax of the Moods and Tenses</i></a> to be published in an electronic format. For the beginning Greek student, this perennial grammar on Greek Verbs requires constant referencing and in-depth study and reflection in order to grasp the nuances of Greek verbs. Frustrated with having to constantly thumb back and forth through Burton's grammar rules, we set out to create an hyperlinked and interactive version of <i>Syntax</i>. After three months of squashing typos and wrangling HTML, we finished making the electronic version. When we first used <i>Syntax</i>, we saw how immensely effective Burton was in this format. We could touch, click, read and navigate around <i>Syntax</i> with ease. This meant that we could spend more time reading and understanding, and less time flipping pages and searching for grammar rules. It then dawned upon us that Christians could be greatly served if electronic editions of classic Christian texts were produced and published to a worldwide audience.
+						<span class="break"></span>
+							Today, Fig publishes theological content in every open-standard electronic format. In addition, we create learning software for biblical studies and theology. It is our conviction that every Christian should be intellectually challenged and learned in their faith. Soli Deo Gloria!
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="bufferpadding"></div>
+		</div><!-- end of main -->
+		<div id="footer">Copyright &copy; 2012 Fig. All rights reserved.</div>
+</div><!-- end of #container -->
+	
+	<script type="text/javascript">
+
+	  var _gaq = _gaq || [];
+	  _gaq.push(['_setAccount', 'UA-28951202-1']);
+	  _gaq.push(['_trackPageview']);
+
+	  (function() {
+	    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  })();
+
+	</script>
+	
+</body>
+</html>

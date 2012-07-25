@@ -1,0 +1,631 @@
+<html>  
+
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Fig</title>
+    <meta name="description" content="Publishing Christian literature and educational resources since 2010.">
+    <meta name="keywords" content="Christian, Theology, Reformed, Publishing, Publishers, Books, Book, eBooks, eBook, Theological, Christianity, Reformation, Seminary, Learn, Learning, iBookstore, iBook, iBooks, Apple, Kindle, Amazon, Buy eBooks, Find eBooks, Design, Technology, Engineering">
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+		
+	<script src="scripts/jquery.js"></script>
+	<!-- styles needed by jScrollPane -->
+	<link type="text/css" href="scripts/jscrollpane.css" rel="stylesheet" media="all" />
+	<!-- the mousewheel plugin - optional to provide mousewheel support -->
+	<script type="text/javascript" src="scripts/mousewheel.js"></script>
+	<!-- the jScrollPane script -->
+	<script type="text/javascript" src="scripts/jscrollpane.js"></script>
+	<script type="text/javascript">
+	$(function()
+	{
+		var win = $(window);
+		// Full body scroll
+		var isResizing = false;
+		win.bind(
+			'resize',
+			function()
+			{
+				if (!isResizing) {
+					isResizing = true;
+					var container = $('#container');
+					// Temporarily make the container tiny so it doesn't influence the
+					// calculation of the size of the document
+					container.css(
+						{
+							'width': 1,
+							'height': 1
+						}
+					);
+					// Now make it the size of the window...
+					container.css(
+						{
+							'width': win.width(),
+							'height': win.height()
+						}
+					);
+					isResizing = false;
+					container.jScrollPane(
+						{
+							'showArrows': true
+						}
+					);
+				}
+			}
+		).trigger('resize');
+
+		// Workaround for known Opera issue which breaks demo (see
+		// http://jscrollpane.kelvinluck.com/known_issues.html#opera-scrollbar )
+		$('body').css('overflow', 'hidden');
+
+		// IE calculates the width incorrectly first time round (it
+		// doesn't count the space used by the native scrollbar) so
+		// we re-trigger if necessary.
+		if ($('#container').width() != win.width()) {
+			win.trigger('resize');
+		}
+	});
+	</script>
+	<script type="text/javascript">
+
+		// On window load. This waits until images have loaded which is essential
+		$(window).load(function(){
+
+			// Fade in images so there isn't a color "pop" document load and then on window load
+			$(".sm-button img").fadeIn(500);
+
+			// clone image
+			$('.sm-button img').each(function(){
+				var el = $(this);
+				el.css({"position":"absolute"}).wrap("<div class='img_wrapper' style='display: inline-block'>").clone().addClass('img_grayscale').css({"position":"absolute","z-index":"998","opacity":"0"}).insertBefore(el).queue(function(){
+					var el = $(this);
+					el.parent().css({"width":this.width,"height":this.height});
+					el.dequeue();
+				});
+				this.src = grayscale(this.src);
+			});
+
+			// Fade image 
+			$('.sm-button img').mouseover(function(){
+				$(this).parent().find('img:first').stop().animate({opacity:1}, 100);
+			})
+			$('.img_grayscale').mouseout(function(){
+				$(this).stop().animate({opacity:0}, 500);
+			});		
+		});
+
+		// Grayscale w canvas method
+		function grayscale(src){
+			var canvas = document.createElement('canvas');
+			var ctx = canvas.getContext('2d');
+			var imgObj = new Image();
+			imgObj.src = src;
+			canvas.width = imgObj.width;
+			canvas.height = imgObj.height; 
+			ctx.drawImage(imgObj, 0, 0); 
+			var imgPixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
+			for(var y = 0; y < imgPixels.height; y++){
+				for(var x = 0; x < imgPixels.width; x++){
+					var i = (y * 4) * imgPixels.width + x * 4;
+					var avg = (imgPixels.data[i] + imgPixels.data[i + 1] + imgPixels.data[i + 2]) / 3;
+					imgPixels.data[i] = avg; 
+					imgPixels.data[i + 1] = avg; 
+					imgPixels.data[i + 2] = avg;
+				}
+			}
+			ctx.putImageData(imgPixels, 0, 0, 0, 0, imgPixels.width, imgPixels.height);
+			return canvas.toDataURL();
+	    }
+
+	</script>
+    <style type="text/css">
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{margin:0 auto;padding:0;}
+table{border-collapse:collapse;border-spacing:0;}
+fieldset,img{border:0;}
+address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}
+ol,ul{list-style:none;}
+caption,th{text-align:left;}
+h1,h2,h3,h4,h5,h6{font:100% helvetica;font-weight:normal;}
+q:before,q:after{content:'';}
+abbr,acronym{border:0;}
+body{}
+.break{display:block;margin:10px 0 0;}
+body{background-color:#fff;}
+
+#container{width:101%;}
+
+#header{margin:1.8em 0 0em;padding:2.7em 0;background-color:#2F2E30;-webkit-border-radius:4px 4px 0 0;border-radius:4px 4px 0px 0px;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;}
+#home {position:relative;top:0px;margin: 0 0.5em; text-decoration:none;color:#2f2e30;transition: all 0.25s ease-in-out;
+-webkit-transition: all 0.25s ease-in-out;
+-moz-transition: all 0.25s ease-in-out;}
+#home:hover {-moz-opacity:0.8;opacity:0.8;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=80);}
+#home:active {-moz-opacity:1;opacity:1;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);}
+#header .fig {margin:0 0 0 2.3em;}
+#header img {}
+#header a h1 {display:inline;margin: 0 0.2em 1em;font: bold 5.8em/1.2em 'Open Sans';color:#e9e9e9;}
+#social-media {display:inline;float:right;position:relative;top:-2px;right:37px;}
+#social-media span {display:block;float:right;clear:none;margin:0 0 0 0.3em;}
+#social-media a{display:block;margin: 0 0;}
+#social-media a:hover{-moz-opacity:1;opacity:1;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=100);}
+#social-media a:active{-moz-opacity:0.9;opacity:0.9;-ms-filter:progid:DXImageTransform.Microsoft.Alpha(Opacity=90);}
+#social-media .google-plus,#social-media .twitter,#social-media .facebook {width:64px;height:64px;}
+
+#main{-webkit-border-radius: 0 0 4px 4px;border-radius: 0 0 4px 4px;-moz-border-radius-bottomleft:4px;-moz-border-radius-bottomright:4px;}
+.list {padding:0 0;background:#2F2E30;}
+.topbufferpadding {padding: 3% 1%;min-height:1px;background: #2F2E30;-webkit-border-radius: 4px 4px 0 0 ;border-radius: 4px 4px 0 0;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;}
+.bottombufferpadding{background:#2F2E30;border-bottom-left-radius:7px 7px;border-bottom-right-radius:7px 7px;-moz-border-radius: 0px 0px 7px 7px;border-radius: 0px 0px 7px 7px;}
+.bottombufferpadding, #footer {padding: 3% 1%;min-height:1px;}
+#footer {font: 10px helvetica; color: #888;}
+.searchbar {background:#2F2E30;padding:3% 3%;border-top:#4A434A 1px solid;border-bottom:#4A434A 1px solid;-webkit-border-radius:7px 7px 0 0;border-radius:7px 7px 0px 0px;-moz-border-radius-topleft:7px;-moz-border-radius-topright:7px;}
+input.search{display:block;padding:10px 17px;margin:0px auto;width:99%;border-bottom-left-radius:25px 25px;border-bottom-right-radius:25px 25px;border-top-left-radius:25px 25px;border-top-right-radius:25px 25px;-moz-border-radius: 25px;
+border-radius: 25px;color:#2F2E30;font-family:helvetica;font-size:20px;background:#e1e1e1 url('imgs/search.png') no-repeat 99% center;outline:none;transition:all 0.25s ease-in-out;-webkit-transition:all 0.25s ease-in-out;-moz-transition:all 0.25s ease-in-out;border-radius:25px;-webkit-border-radius:25px;-moz-border-radius:25px;border:1px solid #e8e8e8;}
+input.search:focus{border:none;box-shadow:0 0 5px #f5f5f5;-webkit-box-shadow:0 0 8px #f5f5f5;-moz-box-shadow:0 0 5px #f5f5f5;border:1px solid #f5f5f5;}
+
+#catalog-list .filter{background:#4A434A;border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;-moz-border-radius: 4px;border-radius: 4px;color:#F4F5F4;float:right;font-size:20px;font-weight:bold;margin:10px 0;padding:7px 8px;}
+li.btn{background:transparent !important;}
+.note{text-shadow:#262729 0 -1px 0;margin-bottom:60px;text-align:center;color:#999;font-size:14px;}
+.note b{color:#eee;}
+
+#catalog-list{}
+#catalog-list .sort-by{margin-bottom:10px;width:100%;float:left;clear:both;}
+#catalog-list .thumb{width:80px;float:left;margin:0 20px 20px 0;}
+#catalog-list .list{clear:both;padding:3.6% 3.6% 0em;}
+#catalog-list .list li{padding:24px 20px 29px;min-height:156px;border-bottom:#d3d3d3 1px solid;}
+#catalog-list li:first-child {border-top-left-radius:4px 4px;border-top-right-radius:4px 4px;}
+#catalog-list li:last-child{border-bottom-left-radius:4px 4px;border-bottom-right-radius:4px 4px;}
+#catalog-list li:nth-child(2n+1){background-color:#e1e1e1;}
+#catalog-list li:nth-child(2n+1) .thumb{}
+#catalog-list li:nth-child(2n+2){background-color:#e8e8e8;}
+#catalog-list li:nth-child(2n+2) .thumb{}
+#catalog-list li:last-child {margin: 0 0;}
+/*.price{width:100px;margin:2.9px 20px 5px 0;padding:6px 0;float:left;clear:left;position:relative;background:#353535;font:bold 16px helvetica;text-align:center;color:#f1f1f1;} */
+#catalog-list img{margin:0 20px 12px 0 !important;}
+.market-buttons {float:right;clear:right;margin: 0 0 0 1px;}
+.market-buttons a{float:right;position:relative;top:-12px;right:-5px;width:80px;margin:4px 0px 0;padding:7px 5px 7px 8px;font:bolder 13px helvetica;border:#b3b3b3 1px solid;color:#888;text-decoration:none;}
+.market-buttons a:hover, .market-buttons a:hover span{text-decoration:none;background:#A7C740;color:#f4f5f4;}
+.market-buttons a:active, .market-buttons a:active span{color:#fff;}
+.market-buttons a:last-child{border-top-left-radius:4px 4px;border-bottom-left-radius:4px 4px;border-right:none;}
+.market-buttons a:first-child{border-top-right-radius:4px 4px;border-bottom-right-radius:4px 4px;border-right:#b3b3b3 1px solid;}
+.price {margin:0 1px 0 0;float:right;font: normal 11px monaco;color:#767676;}
+.name{color:#2f2e30;font:bold 22px/26px 'open sans', helvetica;margin-bottom:0px;}
+.contributers {font-size:13px;color:#2f2e30;}
+.description{margin:22px 0 0;font:normal 12.5px helvetica,arial;color:#2f2e30;text-align:justify;}
+
+.huge{max-height:500px;overflow:scroll;}
+	</style>
+</head>
+
+
+<body>
+
+<div id="container">
+		<div id="main">
+			<div id="catalog-list">
+				<!-- <ul class="filter">
+					<li class="btn" id="filter-none">Clear Search
+					</li> 
+				</ul> -->
+				<div class="searchbar"><input class="search" tabindex="1" placeholder="Begin typing to search..."></div>
+<!--START HERE--><ul class="list">
+					<li>
+						<img src="book-cover-imgs/st-anselm-cdh.jpg" class="thumb">
+						<span class="market-buttons"><span class="market-buttons"><a href="http://www.amazon.com/Cur-Deus-Homo-Became-ebook/dp/B006USDYQ8/" target="_blank">Kindle <span class="price">$2.99</span></a><a href="http://itunes.apple.com/us/book/cur-deus-homo/id494100559?mt=11" target="_blank">iBook <span class="price">$2.99</span></a></span></span>
+						
+						
+							<span class="name"><i>Cur Deus Homo</i></span>
+						<h6 class="contributers">St. Anselm of Canterbury</h6>
+						<p class="description">
+							<i>"How great a thing it is, also, for God and man to unite in one person, that, while the perfection of each nature is preserved, the same being may be both God and man! Who, then, will dare to think that the human mind can discover how wisely, how wonderfully, so incomprehensible a work has been accomplished?"</i>
+	<span class="break"></span>
+							<i>Cur Deus Homo</i>, translated "Why God-Man?", refers to the question of the nature of Christ's incarnation. In this fictional philosophical dialog between Anselm and Boso, a monk in Normandy, this question is handled masterfully and is arguably the first complete exposition of the doctrine of substitutionary atonement.
+	<span class="break"></span>
+							This electronic edition features an active table of contents. <i>Cur Deus Homo</i> is part of The Fig Classic Series on Medieval Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/bunyan-pp.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Pilgrims-Progress-ebook/dp/B00701JEMW/" target="_blank">Kindle <span class="price">$2.99</span></a><a href="http://itunes.apple.com/us/book/pilgrims-progress/id496794229?mt=11" target="_blank">iBook <span class="price">$2.99</span></a></span>
+
+							<span class="name">Pilgrim's Progress  </span>
+						
+						<h6 class="contributers">John Bunyan</h6>
+						<p class="description">
+							<i>"This hill though high I covent ascend; The difficulty will not me offend; For I perceive the way of life lies here. Come, pluck up, heart; let's neither faint nor fear."</i>
+							<span class="break"></span>
+							<i>Pilgrim's Progress</i> is considered one of the most significant works of English religious literature. Though written in the 17th century, this spiritual allegory of Christian's arduous journey to the World To Come has captivated readers for over 300 years. John Bunyan's vivid imagery and rich English style will delight readers both young and old.
+							<span class="break"></span>
+							This edition features an active table of contents. <i>Pilgrim's Progress</i> is part of The Fig Classic Series on Post-Reformation Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/burton-mt.jpeg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/dp/B004U7GKK8" target="_blank">Kindle <span class="price">$3.99</span></a><a href="http://itunes.apple.com/us/book/syntax-moods-tenses-in-new/id428956845?mt=11" target="_blank">iBook <span class="price">$3.99</span></a></span>
+
+							<span class="name">Syntax of the Moods and Tenses in NT Greek  </span>
+						
+						<h6 class="contributers">Ernest De Witt Burton</h6>
+						<p class="description">
+							Originally published in 1898 as the third edition of Burton's seminal work on Greek grammar, it remains today as a must-have handbook for the serious Greek student. In it, Burton delves into each mood and tense and cogently elucidates details of the Greek verbs while providing helpful scripture references as examples. Burton describes this handbook:
+							<span class="break"></span>
+							"Its main purpose is to contribute to the interpretation of the New Testament by the exposition of the functions of the verb in New Testament Greek, so far as those function are expressed by the distinctions of mood and tense."
+							<span class="break"></span>
+							In this digital edition, the table of contents has been reformatted specifically for reading devices. In addition, links have been made for intra-book references allowing for quick and in-depth researching (including all appendix matter).
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/calvin-i.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Institutes-Christian-Religion-ebook/dp/B006US2R6G/" target="_blank">Kindle <span class="price">$0.99</span></a><a href="http://itunes.apple.com/us/book/institutes-christian-religion/id494155485?mt=11" target="_blank">iBook <span class="price">$0.99</span></a></span>
+
+							<span class="name">Institutes of the Christian Religion  </span>
+						
+						<h6 class="contributers">John Calvin, Translation by Henry Beveridge, Introduction by John Murray</h6>
+						<p class="description">
+							<i>"Such is pure and genuine religion, namely, confidence in God coupled with serious fear - fear, which both includes in it willing reverence, and brings along with it such legitimate worship as is prescribed by the law." &mdash;Institutes 1.2.2.</i>
+							<span class="break"></span>
+							<i>Institutes of the Christian Religion</i> is considered John Calvin's magnum opus and a groundbreaking systematization of Protestant theology. The first edition was written in 1536 as a brief summary of Christian teaching, but because of the demand by 1559 &mdash; Institutes grew into the four-volume set that we know today. This classic translation by Henry Beveridge from Calvin's 1559 Latin edition is provided in its entirety here in one digital edition.
+							<span class="break"></span>
+							This digital edition has been made specifically for quick navigation and browsing. Additionally, it also features active footnotes, and a special introduction by John Murray. <i>Institutes of the Christian Religion</i> is part of The Fig Classic Series on Reformation Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/calvin-otcl.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/On-the-Christian-Life-ebook/dp/B00701JEOK/" target="_blank">Kindle <span class="price">$1.99</span></a><a href="http://itunes.apple.com/us/book/on-the-christian-life/id496795708?mt=11" target="_blank">iBook <span class="price">$1.99</span></a></span>
+
+							<span class="name">On the Christian Life  </span>
+						
+						<h6 class="contributers">John Calvin</h6>
+						<p class="description">
+							<i>"This, therefore, let us never cease to do, that we may daily advance in the way of the Lord; and let us not despair because of the slender measure of success. How little soever the success may correspond with our wish, our labour is not lost when to-day is better than yesterday, provided with true singleness of mind we keep our aim, and aspire to the goal, not speaking flattering things to ourselves, nor indulging our vices, but making it our constant endeavour to become better, until we attain to goodness itself."</i>
+							<span class="break"></span>
+							<i>On the Christian Life</i> became popular as it became clear that many were curious about Calvin's theology regarding the Christian life. In this accessible booklet, Calvin begins first by speaking about the marks of a true Christian, namely a "special love for righteousness." He then moves on to Christian discipleship and meditation upon the future life. And lastly, Calvin speaks in pragmatic terms regarding the exercises of these truths. This enriching treatment of the Christian life is sure to encourage biblical and robust Christian piety.
+							<span class="break"></span>
+							This electronic edition features an active table of contents. <i>On the Christian Life</i> is part of The Fig Classic Series on Reformation Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/edwards-pulpit.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/At-Pulpits-Northampton-Jonathan-ebook/dp/B00701JFK8/" target="_blank">Kindle <span class="price">$3.99</span></a><a href="http://itunes.apple.com/us/book/at-pulpits-northampton-the/id496797180?mt=11" target="_blank">iBook <span class="price">$3.99</span></a></span>
+
+							<span class="name">At the Pulpits of Northampton  </span>
+						
+						<h6 class="contributers">Jonathan Edwards</h6>
+						<p class="description">
+							<i>"Therefore, let every one that is out of Christ, now awake and fly from the wrath to come. The wrath of Almighty God is now undoubtedly hanging over a great part of this congregation: Let every one fly out of Sodom: 'Haste and escape for your lives, look not behind you, escape to the mountain, lest you be consumed.'"</i>
+							<span class="break"></span>
+							Jonathan Edwards (October 5, 1703 &mdash; March 22, 1758) was a preacher, theologian, and missionary to Native Americans. Widely acknowledged to be America's most important philosophical theologian and greatest intellectuals, Edwards played a critical role in shaping the First Great Awakening, and oversaw some of the first fires of revival in 1733-1735 at his church, First Church, in Northampton, Massachusetts.
+							<span class="break"></span>
+							This edition is a compilation of 43 sermons including <i>Sinners in the Hands of an Angry God</i> and a group series of sermons on charity. This edition also features an active table of contents. <i>At the Pulpits of Northampton</i> is part of The Fig Classic Series: At the Pulpit.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/edwards-sithoaag.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Sinners-Hands-Angry-God-ebook/dp/B006V3D7MS/" target="_blank">Kindle <span class="price">$0.99</span></a><a href="http://itunes.apple.com/us/book/sinners-in-hands-angry-god/id494085281?mt=11" target="_blank">iBook <span class="price">$0.99</span></a></span>
+
+							<span class="name">Sinners in the Hands of an Angry God  </span>
+						
+						<h6 class="contributers">Jonathan Edwards</h6>
+						<p class="description">
+							<i>"You have offended him infinitely more than ever a stubborn rebel did his prince; and yet it is nothing but his hand that holds you from falling into the fire every moment ... And now you have an extraordinary opportunity, a day wherein Christ has thrown the door of mercy wide open, and stands in calling and crying with a loud voice to poor sinners; a day wherein many are flocking to him, and pressing into the kingdom of God."</i>
+							<span class="break"></span>
+							Guest preaching at a church in Connecticut, Jonathan Edwards delivered this sermon titled, <i>Sinners in the Hands of an Angry God</i>. Sinners is an iconic sermon which characterizes both the times and the climate in New England during the Great Awakening and provides a unique glimpse into the theology of American Puritanism during the mid-18th century. Edwards' sometimes called "fire and brimstone" style of preaching was a well-known approach and would even render some benefit today for churches struggling with entrenched attitudes of spiritual lethargy.
+							<span class="break"></span>
+							This electronic edition has been specially formatted for digital reading devices. <i>Sinners in the Hands of an Angry God</i> is part of The Fig Classic Series on Early Modern Theology.
+						</p>
+					</li>					
+					<li>
+						<img src="book-cover-imgs/fisher-momd.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Marrow-Modern-Divinity-ebook/dp/B00701JFX0/" target="_blank">Kindle <span class="price">$5.99</span></a><a href="http://itunes.apple.com/us/book/the-marrow-of-modern-divinity/id496796719?mt=11" target="_blank">iBook <span class="price">$5.99</span></a></span>
+
+							<span class="name">The Marrow of Modern Divinity  </span>
+						
+						<h6 class="contributers">Edward Fisher</h6>
+						<p class="description">
+							<i>"There is no question but every spiritual believing Jew, when he brought his sacrifice to be offered, and, according to the Lord's command, laid his hands upon it whilst it was yet alive (Lev. 1:4), did, from his heart, acknowledge that he himself had deserved to die, but by the mercy of God he was saved, and his desert laid upon the beast; and as that beast was to die, and to be offered in sacrifice for him, so did he believe that the Messiah should come and die for him, upon whom he put his hands, that is, laid all his iniquities by the hand of faith."</i>
+							<span class="break"></span>
+							<i>The Marrow of Modern Divinity</i> was a scandal when it was first presented to the reading public in the mid-17th century. In this book, Edward Fisher wrote under the pseudonym "E.F." boldly proclaiming the Calvinistic doctrines of grace and the free offer of the gospel. Most accented of the themes is his treatment of unconditional election&mdash;over and against the throes of legalism and antinomianism of his day. Take up this book and find out just how liberating the doctrines of grace can be!
+							<span class="break"></span>
+							This edition contains the original two-part work with Thomas Boston's notes, the appendix and an active table of contents. <i>The Marrow of Modern Divinity</i> is part of The Fig Classic Series on Post-Reformation Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/luther-tbotw.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Bondage-Will-ebook/dp/B006UT532K/" target="_blank">Kindle <span class="price">$3.99</span></a><a href="http://itunes.apple.com/us/book/the-bondage-of-the-will/id494101965?mt=11" target="_blank">iBook <span class="price">$3.99</span></a></span>
+
+							<span class="name">The Bondage of the Will  </span>
+						
+						<h6 class="contributers">Martin Luther</h6>
+						<p class="description">
+							<i>"Even grammarians and schoolboys on street corners know that nothing more is signified by verbs in the imperative mood than what ought to be done, and that what is done or can be done should be expressed by words in the indicative. How is it that you theologians are twice as stupid as schoolboys, in that as soon as you get hold of a single imperative verb you infer an indicative meaning, as though the moment a thing is commanded it is done, or can be done?"</i>
+							<span class="break"></span>
+							<i>The Bondage of the Will</i> is considered by many as Martin Luther's most important work. The title of this work was a response to Erasmus' letter titled, <i>Freedom of the Will</i>, where his argument was that God's commands implied moral ability. In what has been considered a brilliant response to this was Luther's proposition that God's commands actually implied inability! This was simply Luther's near and dear doctrine of total depravity but in a form that is direct in its address and persuasive in its candor.
+							<span class="break"></span>
+							This electronic edition features an active table of contents. <i>The Bondage of the Will</i> is part of The Fig Classic Series on Reformation Theology.
+						</p>
+					</li>	
+					<li>
+						<img src="book-cover-imgs/machen-cal.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/dp/B005Y4F336" target="_blank">Kindle <span class="price">$2.99</span></a><a href="http://itunes.apple.com/us/book/christianity-and-liberalism/id467889444?mt=11" target="_blank">iBook <span class="price">$2.99</span></a></span>
+
+							<span class="name">Christianity and Liberalism  </span>
+						
+						<h6 class="contributers">J. Gresham Machen</h6>
+						<p class="description">
+							<i>"In my little book, Christianity and Liberalism, 1923, I tried to show that the issue in the Church of the present day is not between two varieties of the same religion, but, at bottom, between two essentially different types of thought and life. There is much interlocking of the branches, but the two tendencies, Modernism and supernaturalism, or (otherwise designated) non-doctrinal religion and historic Christianity, spring from different roots. In particular, I tried to show that Christianity is not a 'life,'as distinguished from a doctrine, and not a life that has doctrine as its changing symbolic expression, but that--exactly the other way around--it is a life founded on a doctrine."</i>
+<span class="break"></span>
+							This edition features an active table of contents. <i>Christianity and Liberalism</i> is part of The Fig Classic Series on Modern Theology.				
+						</p>
+					</li>														
+					<li>
+						<img src="book-cover-imgs/owen-tmos.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/The-Mortification-of-Sin-ebook/dp/B006UWEGNO/" target="_blank">Kindle <span class="price">$2.99</span></a><a href="http://itunes.apple.com/us/book/the-mortification-of-sin/id494084777?mt=11" target="_blank">iBook <span class="price">$2.99</span></a></span>
+
+							<span class="name">The Mortification of Sin  </span>
+						
+						<h6 class="contributers">John Owen</h6>
+						<p class="description">
+							<i>"This renewing of us by the Holy Ghost, as it is called, is one great way of mortification: he causes us to grow, thrive, flourish and abound in those graces which are contrary, opposite, and destructive to all the fruits of the flesh, and to the quiet or thriving of indwelling sin."</i>
+							<span class="break"></span>
+							<i>The Mortification of Sin</i> is an incisive treatise on a topic much neglected in the church. Written in the 17th century by the English Puritan, John Owen, this work has been an unfailing aid for believers for several centuries as a corrective against the notion of "harmless sin." Owen refutes this completely with his famous quote: "Be killing sin, or it will be killing you." Though Owen's style can be dense, reading this treatise one senses his acute sensitivity for doctrine is precisely the remedy for true Christian living.
+							<span class="break"></span>
+							This electronic edition features an active table of contents. <i>The Mortification of Sin</i> is part of The Fig Classic Series on Post-Reformation Theology.					
+						</p>
+					</li>	
+					<li>
+						<img src="book-cover-imgs/ryle-pulpit.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/At-Pulpits-Liverpool-Sermons-ebook/dp/B006ZT0I8Y/" target="_blank">Kindle <span class="price">$2.99</span></a><a href="http://itunes.apple.com/us/book/at-pulpits-liverpool-the-sermons/id496796814?mt=11" target="_blank">iBook <span class="price">$2.99</span></a></span>
+
+							<span class="name">At the Pulpits of Liverpool  </span>
+						
+						<h6 class="contributers">J.C. Ryle</h6>
+						<p class="description">
+							<i>"I lay these thoughts before your mind. What you think now about the cross of Christ, I cannot tell. But I can wish you nothing better than this—that you may be able to say with the Apostle Paul, before you die or meet the Lord, 'God forbid that I should boast—except in the cross of our Lord Jesus Christ!'"</i>
+							<span class="break"></span>
+							John Charles Ryle (May 10, 1816 &mdash; June 10, 1900) was the first Anglican bishop of Liverpool. He was a writer, pastor and an evangelical preacher. Ryle was a strong supporter of the evangelical school and a critic of Ritualism. Ryle was described as having a commanding presence and vigorous in advocating his principles albeit with a warm disposition. He was also credited with having success in evangelizing the blue collar community. His second son, Herbert Edward Ryle, became Dean of Westminster.
+							<span class="break"></span>
+							This edition is a compilation of 47 sermons including <i>A Call To Prayer</i> and <i>The Duties of Parents</i> preached by J.C. Ryle and features an active table of contents. <i>At the Pulpits of Liverpool</i> is part of The Fig Classic Series: At the Pulpit.
+						</p>
+					</li>				
+					<li>
+						<img src="book-cover-imgs/ryle-holiness.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Holiness-ebook/dp/B006UXVFL4/" target="_blank">Kindle <span class="price">$4.99</span></a><a href="http://itunes.apple.com/us/book/holiness/id494088166?mt=11" target="_blank">iBook <span class="price">$4.99</span></a></span>
+
+							<span class="name">Holiness  </span>
+						
+						<h6 class="contributers">J.C. Ryle</h6>
+						<p class="description">
+							<i>"Sanctification is the only sure mark of Gods' election ... It is not given to us in this world to study the pages of the book of life, and see if our names are there. But if there is one thing clearly and plainly laid down about election, it is this &mdash; that elect men and women may be known and distinguished by holy lives."</i>
+<span class="break"></span>
+							<i>Holiness</i> is a classic exposition on the doctrine of sanctification, or "Christian perfection" as it had come to be known in the Wesleyan tradition. Written in the 19th century by the esteemed bishop of Liverpool, this book has had wide appeal since its first publication and has been a fixture in the libraries of Christians everywhere across various denominations. Ryle's discursive style coupled with his distinctive candor and pastoral voice are a much-needed resource for Christians today seeking to live sanctified lives commensurate to their calling and justification in Christ.
+<span class="break"></span>
+							This electronic edition features an active table of contents. <i>Holiness</i> is part of The Fig Classic Series on Modern Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/sayers-tltol.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/dp/B005X2IV0Q" target="_blank">Kindle <span class="price">$0.99</span></a><a href="http://itunes.apple.com/us/book/the-lost-tools-of-learning/id471684636?mt=11" target="_blank">iBook <span class="price">$0.99</span></a></span>
+
+							<span class="name">The Lost Tools of Learning  </span>
+						
+						<h6 class="contributers">Dorothy L. Sayers</h6>						
+						<p class="description">
+In 1947, Dorothy Sayers first delivered this speech at Oxford University. It has since been republished countless times due to it's sheer eloquence and unanswered articulation of the 3 "lost tools" in classical education: grammar, logic and rhetoric.
+							<span class="break"></span>
+							<i>The Lost Tools of Learning</i> is part of The Fig Classic Series on Modern Theology.
+							</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/warfield-fal.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/dp/B004XMP1OQ" target="_blank">Kindle <span class="price">$3.99</span></a><a href="http://itunes.apple.com/us/book/faith-life/id433709813?mt=11" target="_blank">iBook <span class="price">$3.99</span></a></span>
+
+							<span class="name">Faith & Life  </span>
+						
+						<h6 class="contributers">B.B. Warfield</h6>
+						<p class="description">
+							Published in 1916, this is a collection of 41 sermons Warfield preached in the oratory of Princeton Seminary. Each of the sermons were expository in nature and were based on a single passage of Scripture.
+							<span class="break"></span>
+							This edition features an active table of contents. <i>Faith & Life</i> is part of The Fig Classic Series on Modern Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/warfield-aitttcotnt.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/dp/B004XMP0TW" target="_blank">Kindle <span class="price">$2.99</span></a></span>
+							<span class="name">An Introduction to the Textual Critcism of the NT  </span>
+						
+						<h6 class="contributers">B.B. Warfield</h6>
+						<p class="description">
+							Published in 1887, Warfield states this was to be a "primer" to the field of textual criticism. Though not the final word on textual criticism, it's brief format and general approach makes it an accesible resource for those interested in textual criticism.<span class="break"></span>
+							This edition features an active table of contents. <i>An Introduction to the Textual Criticism</i> of the New Testament is part of The Fig Classic Series on Modern Theology.
+						</p>
+					</li>															
+					<li>
+						<img src="book-cover-imgs/warfield-tpos.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/The-Plan-of-Salvation-ebook/dp/B006US4BOW" target="_blank">Kindle <span class="price">$3.99</span></a><a href="http://itunes.apple.com/us/book/the-plan-of-salvation/id494111693?mt=11" target="_blank">iBook <span class="price">$3.99</span></a></span>
+
+							<span class="name">The Plan of Salvation  </span>
+						
+						<h6 class="contributers">B.B. Warfield</h6>
+						<p class="description">
+							<i>"If, then, we wish to find our way among them it must not be by pitting them indiscriminately against one another, but by following them regularly up the series. Supernaturalism must first be validated as against Naturalism, then Evangelicalism as against Sacerdotalism, then Particularism as against Universalism; and thus we shall arrive at length at the conception of the plan of salvation which does full justice to its specific character. It is to this survey that attention will be addressed in the succeeding lectures."</i>
+							<span class="break"></span>
+							<i>The Plan of Salvation</i> is a compilation of five lectures delivered in 1914 by Benjamin B. Warfield at Princeton Theological Seminary. In these lectures, Warfield thoughtfully analyzes and interacts with various soteriologies and arrives at the conclusion that, "There are fundamentally only two doctrines of salvation: that salvation is from God, and that salvation is from ourselves." How he arrives at this conclusion though is through enriching and edifying argumentation which are sure to evince that truly: salvation is from God alone.
+							<span class="break"></span>
+							This electronic edition features an active table of contents and Warfield's original diagram is included in the appendix as a graphic image. <i>The Plan of Salvation</i> is part of The Fig Classic Series on Modern Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/warfield-trlots.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/Religious-Life-Theological-Students-ebook/dp/B0074V8O38" target="_blank">Kindle <span class="price">$0.99</span></a><a href="http://itunes.apple.com/us/book/the-religious-life-theological/id475178293?mt=11" target="_blank">iBook <span class="price">$0.99</span></a></span>
+							<span class="name">The Religious Life of Theological Students  </span>
+						
+						<h6 class="contributers">B.B. Warfield</h6>
+						<p class="description">
+							A short essay written by B.B. Warfield where he addresses the distinguishing aspects of a seminary education and the virtues vital for a student of theology.<span class="break"></span>"A minister must be both learned and religious. It is not a matter of choosing between the two. He must study, but he must study as in the presence of God and not in a secular spirit. He must recognize the privilege of pursuing his studies in the environment where God and salvation from sin are the air he breathes. He must also take advantage of every opportunity for corporate worship, particularly while he trains in the Theological Seminary. Christ Himself leads in setting the example of the importance of participating in corporate expressions of the religious life of the community. Ministerial work without taking time to pray is a tragic mistake. The two must combine if the servant of God is to give a pure, clear, and strong message."
+							<span class="break"></span>
+							<i>The Religious Life of Theological Students</i> is part of The Fig Classic Series on Modern Theology.
+						</p>
+					</li>
+					<li>
+						<img src="book-cover-imgs/warfield-trost.jpg" class="thumb">
+						<span class="market-buttons"><a href="http://www.amazon.com/dp/B004XWPRYU" target="_blank">Kindle <span class="price">$1.99</span></a><a href="http://itunes.apple.com/us/book/the-right-systematic-theology/id433707618?mt=11" target="_blank">iBook <span class="price">$1.99</span></a></span>
+
+							<span class="name">The Right of Systematic Theology  </span>
+						
+						<h6 class="contributers">B.B. Warfield</h6>
+						<p class="description">
+							Published in 1897, while systematic theology as a formal and modern discipline was still in it's nascency, Warfield makes an appeal to it's place amongst the other Christian disciplines.
+							<span class="break"></span>
+							This edition features an active table of contents. <i>The Right of Systematic Theology</i> is part of The Fig Classic Series on Modern Theology.
+						</p>
+					</li>
+				</ul>
+			</div>
+			<div class="bottombufferpadding"></div>
+		</div><!-- end of main -->
+		<div id="footer">Copyright &copy; 2012 Fig. All rights reserved.</div>
+</div><!-- end of #container -->
+
+    <!-- Start of List.js stuff -->
+    <script src="scripts/list.js"></script>
+    <script type="text/javascript">
+            
+        /* 
+        * LOVELY THINGS
+        */
+        
+        var templates = {
+    	    valueNames: [ 'name', 'description' ]
+        };
+
+        var featureList = new List('catalog-list', templates);
+        
+        // $('#filter-games').click(function() {
+        //     featureList.filter(function(values) {
+        //         if (values.category == "Game") {
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     });
+        //     return false;
+        // });
+        // 
+        // $('#filter-beverages').click(function() {
+        //     featureList.filter(function(values) {
+        //         if (values.category == "Beverage") {
+        //             return true;
+        //         } else {
+        //             return false;
+        //         }
+        //     });
+        //     return false;
+        // });
+
+        $('#filter-none').click(function() {
+            featureList.filter(function(values) {
+                return true;
+            });
+            return false;
+        });
+    </script>
+    <script type="text/javascript">
+        
+        /* 
+        * CONTACT LIST 
+        */
+        
+        // Define value names
+        var templates = {
+    	    valueNames: [ 'id', 'name', 'age', 'city' ]
+        };
+
+        // Init list
+        var contactList = new List('contacts', templates);
+        
+        var idField = $('#id-field'),
+            nameField = $('#name-field'),
+            ageField = $('#age-field'),
+            cityField = $('#city-field'),
+            addBtn = $('#add-btn'),
+            editBtn = $('#edit-btn').hide(),
+            removeBtns = $('.remove-item-btn'),
+            editBtns = $('.edit-item-btn');
+        
+        // Sets callbacks to the buttons in the list
+        refreshCallbacks();
+
+        addBtn.click(function() {
+           contactList.add({
+               id: Math.floor(Math.random()*110000),
+               name: nameField.val(),
+               age: ageField.val(),
+               city: cityField.val() 
+           });
+           clearFields();
+           refreshCallbacks();
+        });
+        
+        editBtn.click(function() {
+           var item = contactList.get('id', idField.val());
+           item.values({
+               id:idField.val(),
+               name: nameField.val(),
+               age: ageField.val(),
+               city: cityField.val() 
+           });
+           clearFields();
+           editBtn.hide();
+           addBtn.show();
+        });
+        
+        function refreshCallbacks() {
+            // Needed to add new buttons to jQuery-extended object
+            removeBtns = $(removeBtns.selector);
+            editBtns = $(editBtns.selector);
+            
+            removeBtns.click(function() {
+               var itemId = $(this).closest('tr').find('.id').text(); 
+               contactList.remove('id', itemId);
+            });
+        
+            editBtns.click(function() {
+               var itemId = $(this).closest('tr').find('.id').text(); 
+               var itemValues = contactList.get('id', itemId).values();
+               idField.val(itemValues.id);
+               nameField.val(itemValues.name);
+               ageField.val(itemValues.age);
+               cityField.val(itemValues.city);
+
+               editBtn.show();
+               addBtn.hide();
+            });
+        }
+        
+        function clearFields() {
+           nameField.val('');
+           ageField.val('');
+           cityField.val('');
+        }
+    </script>
+    <!-- End of List.js stuff -->
+	
+	<script type="text/javascript">
+
+	//  var _gaq = _gaq || [];
+	//  _gaq.push(['_setAccount', 'UA-28951202-1']);
+	//  _gaq.push(['_trackPageview']);
+    //
+	//  (function() {
+	//    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	//    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	//    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	//  })();
+
+	</script>
+	
+</body>
+</html>
